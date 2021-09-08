@@ -426,7 +426,6 @@ controller:
 
     ## List of IP addresses at which the controller services are available
     ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
-    ##
     externalIPs: []
 
     # loadBalancerIP: ""
@@ -448,6 +447,11 @@ controller:
     # the service controller allocates a port from your cluster’s NodePort range.
     # Ref: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
     # healthCheckNodePort: 0
+
+    ## Kubernetes defaults it to SingleStack. Possible values are SingleStack, PreferDualStack or RequireDualStack.
+    ## The ipFamilies and clusterIPs fields depend on the value of this field.
+    ## Ref: https://kubernetes.io/docs/concepts/services-networking/dual-stack/
+    # ipFamilyPolicy: "SingleStack"
 
     ports:
       http: 80
