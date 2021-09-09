@@ -453,6 +453,11 @@ controller:
     ## Ref: https://kubernetes.io/docs/concepts/services-networking/dual-stack/
     # ipFamilyPolicy: "SingleStack"
 
+    ## List of IP families (e.g. IPv4, IPv6) assigned to the service. This field is usually assigned automatically
+    ## based on cluster configuration and the ipFamilyPolicy field.
+    ## Ref: https://kubernetes.io/docs/concepts/services-networking/dual-stack/
+    # ipFamilies: ["IPv4"]
+
     ports:
       http: 80
       https: 443
