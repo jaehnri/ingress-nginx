@@ -121,6 +121,7 @@ jobs:
           path: docker.tar.gz
 
   govulncheck:
+    name: Run govulncheck
     runs-on: ubuntu-latest
     needs:
       - changes
