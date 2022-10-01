@@ -50,7 +50,7 @@ echo "Building targets for ${ARCH}, generated targets in ${TARGETS_DIR} director
 echo "Building ${PKG}/cmd/nginx"
 
 ${GO_BUILD_CMD} \
-  -trimpath -ldflags="-buildid= -w -s \
+  -trimpath -ldflags="-buildid= -w \
   -X ${PKG}/version.RELEASE=${TAG} \
   -X ${PKG}/version.COMMIT=${COMMIT_SHA} \
   -X ${PKG}/version.REPO=${REPO_INFO}" \
