@@ -223,6 +223,11 @@ jobs:
         with:
           name: docker.tar.gz
 
+      - name: Load images from cache
+        run: |
+          echo "loading ingress binary file..."
+          pigz -dc docker.tar.gz | docker load
+
       - name: Install govulncheck
         run: |
           echo "downloading govulncheck..."
