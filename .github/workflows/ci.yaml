@@ -162,6 +162,10 @@ jobs:
     if: |
       (needs.changes.outputs.charts == 'true')
 
+    strategy:
+      matrix:
+        k8s: [v1.23.12, v1.24.6, v1.25.2]
+
     steps:
 
       - name: Checkout
