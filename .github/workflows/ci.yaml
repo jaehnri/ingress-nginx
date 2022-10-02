@@ -116,20 +116,13 @@ jobs:
           
           pigz rootfs/bin/amd64/scannable-nginx-ingress-controller
 
-      - name: Check current dir
-        run: |
-          pwd
-          ls
-          cd rootfs/bin/amd64
-          ls
-
       - name: cache
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # v3.1.0
         with:
           name: docker.tar.gz
           path: docker.tar.gz
 
-      - name: scannable binary
+      - name: Upload binary
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # v3.1.0
         with:
           name: scannable-nginx-ingress-controller.gz
@@ -233,17 +226,12 @@ jobs:
         with:
           go-version: '1.19.1'
 
-      - name: Check dir
-        run: |
-          pwd
-          ls
-
-      - name: cache
+      - name: Download binary
         uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 # v3
         with:
           name: scannable-nginx-ingress-controller.gz
 
-      - name: Load images from cache
+      - name: Unzip binary
         run: |
           echo "loading ingress binary file..."
           pigz -d scannable-nginx-ingress-controller.gz
@@ -253,18 +241,13 @@ jobs:
           echo "downloading govulncheck..."
           go install golang.org/x/vuln/cmd/govulncheck@latest
 
-      - name: Check current dir
-        run: |
-          pwd
-          ls
-
       - name: Run govulncheck
         run: govulncheck scannable-nginx-ingress-controller
         shell: bash
 
       - uses: geekyeggo/delete-artifact@b73cb986740e466292a536d0e32e2666c56fdeb3 # v1
         with:
-          name: docker.tar.gz
+          name: scannable-nginx-ingress-controller.gz
           failOnError: false
 
   kubernetes:
