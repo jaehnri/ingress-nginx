@@ -114,7 +114,7 @@ jobs:
             nginx-ingress-controller \
             | pigz > docker.tar.gz
           
-          pigz rootfs/bin/amd64/scannable-nginx-ingress-controller > scannable-binary.tar.gz
+          pigz rootfs/bin/amd64/scannable-nginx-ingress-controller
 
       - name: Check current dir
         run: |
@@ -246,7 +246,7 @@ jobs:
       - name: Load images from cache
         run: |
           echo "loading ingress binary file..."
-          pigz -dc scannable-nginx-ingress-controller.gz
+          pigz -d scannable-nginx-ingress-controller.gz
 
       - name: Install govulncheck
         run: |
@@ -259,7 +259,7 @@ jobs:
           ls
 
       - name: Run govulncheck
-        run: govulncheck $PWD/scannable-nginx-ingress-controller
+        run: govulncheck scannable-nginx-ingress-controller
         shell: bash
 
       - uses: geekyeggo/delete-artifact@b73cb986740e466292a536d0e32e2666c56fdeb3 # v1
