@@ -116,6 +116,11 @@ jobs:
           
           pigz rootfs/bin/amd64/scannable-nginx-ingress-controller
 
+      - name: Check current dir
+        run: |
+          pwd
+          ls
+
       - name: cache
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # v3.1.0
         with:
@@ -126,7 +131,7 @@ jobs:
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # v3.1.0
         with:
           name: scannable-nginx-ingress-controller
-          path: rootfs/bin/amd64/scannable-nginx-ingress-controller
+          path: $PWD/rootfs/bin/amd64/scannable-nginx-ingress-controller
 
   helm:
     name: Helm chart
@@ -225,6 +230,11 @@ jobs:
         uses: actions/setup-go@268d8c0ca0432bb2cf416faae41297df9d262d7f # v3.2.0
         with:
           go-version: '1.19.1'
+
+      - name: Check dir
+        run: |
+          pwd
+          ls
 
       - name: cache
         uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 # v3
