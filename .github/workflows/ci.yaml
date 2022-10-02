@@ -113,12 +113,20 @@ jobs:
             ingress-controller/controller-chroot:1.0.0-dev \
             nginx-ingress-controller \
             | pigz > docker.tar.gz
+          
+          pigz rootfs/bin/amd64/scannable-nginx-ingress-controller
 
       - name: cache
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # v3.1.0
         with:
           name: docker.tar.gz
           path: docker.tar.gz
+
+      - name: scannable binary
+        uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # v3.1.0
+        with:
+          name: scannable-nginx-ingress-controller
+          path: rootfs/bin/amd64/scannable-nginx-ingress-controller
 
   helm:
     name: Helm chart
@@ -221,12 +229,12 @@ jobs:
       - name: cache
         uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 # v3
         with:
-          name: docker.tar.gz
+          name: scannable-nginx-ingress-controller.gz
 
       - name: Load images from cache
         run: |
           echo "loading ingress binary file..."
-          pigz -dc docker.tar.gz | docker load
+          pigz -dc scannable-nginx-ingress-controller.gz
 
       - name: Install govulncheck
         run: |
@@ -239,7 +247,7 @@ jobs:
           ls
 
       - name: Run govulncheck
-        run: govulncheck $PWD/nginx-ingress-controller
+        run: govulncheck $PWD/scannable-nginx-ingress-controller
         shell: bash
 
       - uses: geekyeggo/delete-artifact@b73cb986740e466292a536d0e32e2666c56fdeb3 # v1

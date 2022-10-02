@@ -50,12 +50,22 @@ echo "Building targets for ${ARCH}, generated targets in ${TARGETS_DIR} director
 echo "Building ${PKG}/cmd/nginx"
 
 ${GO_BUILD_CMD} \
-  -trimpath -ldflags="-buildid= -w \
+  -trimpath -ldflags="-buildid= -s -w \
   -X ${PKG}/version.RELEASE=${TAG} \
   -X ${PKG}/version.COMMIT=${COMMIT_SHA} \
   -X ${PKG}/version.REPO=${REPO_INFO}" \
   -buildvcs=false \
   -o "${TARGETS_DIR}/nginx-ingress-controller" "${PKG}/cmd/nginx"
+
+echo "Building ${PKG}/cmd/nginx with Go's symbol table"
+
+${GO_BUILD_CMD} \
+  -trimpath -ldflags="-buildid= -w \
+  -X ${PKG}/version.RELEASE=${TAG} \
+  -X ${PKG}/version.COMMIT=${COMMIT_SHA} \
+  -X ${PKG}/version.REPO=${REPO_INFO}" \
+  -buildvcs=false \
+  -o "${TARGETS_DIR}/scannable-nginx-ingress-controller" "${PKG}/cmd/nginx"
 
 echo "Building ${PKG}/cmd/dbg"
 
