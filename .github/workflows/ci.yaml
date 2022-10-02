@@ -114,11 +114,13 @@ jobs:
             nginx-ingress-controller \
             | pigz > docker.tar.gz
           
-          pigz rootfs/bin/amd64/scannable-nginx-ingress-controller
+          pigz rootfs/bin/amd64/scannable-nginx-ingress-controller > scannable-binary.tar.gz
 
       - name: Check current dir
         run: |
           pwd
+          ls
+          cd rootfs/bin/amd64
           ls
 
       - name: cache
@@ -130,8 +132,8 @@ jobs:
       - name: scannable binary
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # v3.1.0
         with:
-          name: scannable-nginx-ingress-controller
-          path: $PWD/rootfs/bin/amd64/scannable-nginx-ingress-controller
+          name: scannable-nginx-ingress-controller.gz
+          path: rootfs/bin/amd64/scannable-nginx-ingress-controller.gz
 
   helm:
     name: Helm chart
