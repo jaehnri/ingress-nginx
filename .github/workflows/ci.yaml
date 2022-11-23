@@ -163,7 +163,7 @@ jobs:
           package: scannable-nginx-ingress-controller
           fail-on-vuln: false
 
-      - uses: geekyeggo/delete-artifact@b73cb986740e466292a536d0e32e2666c56fdeb3 # v1
+      - uses: geekyeggo/delete-artifact@54ab544f12cdb7b71613a16a2b5a37a9ade990af
         with:
           name: scannable-nginx-ingress-controller.gz
           failOnError: false
