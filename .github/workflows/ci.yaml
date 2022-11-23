@@ -122,14 +122,8 @@ jobs:
             ingress-controller/controller-chroot:1.0.0-dev \
             | pigz > docker.tar.gz
           
-          ls
-          cd rootfs/
-          ls 
-          cd bin/
-          ls
-          cd amd64/
-          ls
-          pwd
+          ls -l rootfs/bin/amd64/ 
+          mv rootfs/bin/amd64/scannable-nginx-ingress-controller .
           pigz scannable-nginx-ingress-controller
 
       - name: cache
