@@ -122,7 +122,7 @@ jobs:
             ingress-controller/controller-chroot:1.0.0-dev \
             | pigz > docker.tar.gz
           
-          sudo chown -R $USER:$USER /home/github/actions-runner/_work/ingress-nginx
+          sudo chown -R $USER:$USER /home/runner/work/ingress-nginx
           pigz rootfs/bin/amd64/scannable-nginx-ingress-controller
 
       - name: cache
