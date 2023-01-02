@@ -496,7 +496,7 @@ jobs:
   libyear:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # for Bring Your Own Badge to write to "shields" branch
+      contents: read  # for Bring Your Own Badge to write to "shields" branch
       pull-requests: write  # for Bring Your Own Badge to create a pull request
 
     steps:
