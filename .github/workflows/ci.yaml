@@ -518,8 +518,9 @@ jobs:
         run: |
           libyear >> libyear.txt
           cat libyear.txt
-          cat libyear.txt | tail -1 | sed -e "s/total libyear count: //" | read libyear_count
-          echo "LIBYEAR_COUNT=${libyear_count}" >> $GITHUB_OUTPUT
+          cat libyear.txt | tail -1 | sed -e "s/total libyear count: //" | read LIBYEAR_COUNT
+          echo "Current count is: " ${LIBYEAR_COUNT}
+          echo "LIBYEAR_COUNT=${LIBYEAR_COUNT}" >> $GITHUB_OUTPUT
 
       - name: Libyear badge
         uses: RubbaBoy/BYOB@v1.3.0
