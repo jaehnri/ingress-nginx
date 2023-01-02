@@ -492,3 +492,34 @@ jobs:
         if: ${{ steps.filter-images.outputs.kube-webhook-certgen == 'true' }}
         run: |
           cd images/kube-webhook-certgen && make test test-e2e
+
+  libyear:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+
+      - name: Set up Go
+        id: go
+        uses: actions/setup-go@6edd4406fa81c3da01a34fa6f6343087c207a568 # v3.5.0
+        with:
+          go-version: '1.19'
+          check-latest: true
+
+      - name: Install libyear
+        run: go install git.yetaga.in/alazyreader/libyear@latest
+
+      - name: Run libyear
+        id: libyear
+        run: |
+          libyear | tail -1 | sed -e "s/total libyear count: //" | read libyear_count
+          echo "{LIBYEAR_COUNT}=${libyear_count}" >> $GITHUB_OUTPUT
+
+      - name: Libyear badge
+        uses: RubbaBoy/BYOB@v1.3.0
+        with:
+          NAME: libyear
+          COLOR: blue
+          LABEL: 'libyear count'
+          STATUS: ${{ steps.libyear.outputs.LIBYEAR_COUNT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
