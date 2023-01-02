@@ -496,6 +496,7 @@ jobs:
   libyear:
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       pull-requests: write  # RubbaBoy/BYOB writes the count to "shields" branch
 
     steps:
