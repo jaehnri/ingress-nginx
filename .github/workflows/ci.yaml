@@ -83,7 +83,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
-      
+
       - name: Set up Go
         id: go
         uses: actions/setup-go@6edd4406fa81c3da01a34fa6f6343087c207a568 # v3.5.0
@@ -102,7 +102,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
-      
+
       - name: Set up Go
         id: go
         uses: actions/setup-go@6edd4406fa81c3da01a34fa6f6343087c207a568 # v3.5.0
@@ -121,7 +121,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
-      
+
       - name: Set up Go
         id: go
         uses: actions/setup-go@6edd4406fa81c3da01a34fa6f6343087c207a568 # v3.5.0
@@ -496,8 +496,8 @@ jobs:
   libyear:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      pull-requests: write  # RubbaBoy/BYOB writes the count to "shields" branch
+      contents: write
+      pull-requests: write  # for Bring Your Own Badge to write to "shields" branch
 
     steps:
       - name: Checkout
