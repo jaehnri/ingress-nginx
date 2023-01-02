@@ -497,7 +497,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write  # for RubbaBoy/BYOB to write to "shields" branch
+#      pull-requests: write  # for RubbaBoy/BYOB to write to "shields" branch
 
     steps:
       - name: Checkout
