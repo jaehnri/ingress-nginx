@@ -496,8 +496,7 @@ jobs:
   libyear:
     runs-on: ubuntu-latest
     permissions:
-      contents: read  # for Bring Your Own Badge to write to "shields" branch
-      pull-requests: write  # for Bring Your Own Badge to create a pull request
+      pull-requests: write  # RubbaBoy/BYOB writes the count to "shields" branch
 
     steps:
       - name: Checkout
