@@ -518,7 +518,7 @@ jobs:
         run: |
           libyear >> libyear.txt
           cat libyear.txt
-          cat libyear.txt | tail -1 | sed -e "s/total libyear count: //" | read LIBYEAR_COUNT
+          LIBYEAR_COUNT=$(cat libyear.txt | tail -1 | sed -e "s/total libyear count: //")
           echo "Current count is: " ${LIBYEAR_COUNT}
           echo "LIBYEAR_COUNT=${LIBYEAR_COUNT}" >> $GITHUB_OUTPUT
 
