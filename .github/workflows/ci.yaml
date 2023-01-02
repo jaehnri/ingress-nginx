@@ -516,10 +516,7 @@ jobs:
       - name: Run libyear
         id: libyear
         run: |
-          libyear >> libyear.txt
-          cat libyear.txt
-          LIBYEAR_COUNT=$(cat libyear.txt | tail -1 | sed -e "s/total libyear count: //")
-          echo "Current count is: " ${LIBYEAR_COUNT}
+          LIBYEAR_COUNT=$(libyear -indirect | tail -1 | sed -e "s/total libyear count: //")
           echo "LIBYEAR_COUNT=${LIBYEAR_COUNT}" >> $GITHUB_OUTPUT
 
       - name: Libyear badge
